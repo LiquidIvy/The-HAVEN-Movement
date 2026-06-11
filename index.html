@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The HAVEN Movement | Constitutional AI for Human Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#1A2744;
+      --teal:#2E86C1;
+      --amber:#F59E0B;
+      --purple:#3D1A78;
+      --purple-mid:#6D28D9;
+      --slate:#475569;
+      --text:#1E293B;
+      --subtle:#F1F5F9;
+      --border:#CBD5E1;
+      --white:#fff;
+      --teal-light:#EFF6FF;
+      --amber-light:#FFFBEB;
+      --purple-light:#F5F3FF;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;color:var(--text);background:var(--white)}
+
+    /* ── NAV ── */
+    nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--purple)}
+    .nav-brand{font-weight:700;font-size:.85rem;color:var(--white);letter-spacing:.08em;text-decoration:none;display:flex;align-items:center;gap:.75rem}
+    .nav-brand-movement{font-size:.75rem;font-weight:400;color:#C4B5FD;letter-spacing:.06em}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:#C4B5FD;text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.04em;transition:color .2s}
+    .nav-links a:hover{color:var(--white)}
+
+    /* ── HERO ── */
+    .hero{background:var(--navy);padding:6rem 2rem 5rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 70% 50%, rgba(61,26,120,.35) 0%, transparent 60%);pointer-events:none}
+    .hero-inner{max-width:820px;margin:0 auto;position:relative}
+    .hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem}
+    .hero-badge{display:inline-block;background:rgba(61,26,120,.4);border:1px solid rgba(196,181,253,.4);color:#C4B5FD;font-size:.7rem;font-weight:700;letter-spacing:.14em;padding:.3rem .85rem;text-transform:uppercase}
+    .hero-amber-bar{width:40px;height:5px;background:var(--amber);border-radius:2px}
+    .hero-civilization{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,5vw,3.2rem);color:var(--white);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem;max-width:700px}
+    .hero-civilization em{font-style:italic;color:#C4B5FD}
+    .hero-question{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.7);line-height:1.6;max-width:600px;margin-bottom:2rem;font-weight:300}
+    .hero-rule{border:none;border-top:1px solid rgba(255,255,255,.1);margin-bottom:1.75rem}
+    .hero-audience{display:flex;gap:2rem;flex-wrap:wrap}
+    .audience-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:rgba(255,255,255,.6);letter-spacing:.04em}
+    .audience-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0}
+
+    /* ── CONTENT ── */
+    .content{max-width:820px;margin:0 auto;padding:0 2rem}
+    section{padding:4rem 0 0}
+    .eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:.6rem}
+    h2{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);color:var(--navy);line-height:1.2;margin-bottom:1rem}
+    .section-rule{border:none;border-top:2px solid var(--purple);margin-bottom:1.75rem}
+    p{margin-bottom:1.1rem;font-size:.97rem;line-height:1.75}
+    p:last-child{margin-bottom:0}
+
+    /* ── DISPLAY QUOTES ── */
+    .display-quote{padding:2.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:2rem 0;text-align:center}
+    .display-quote p{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(1.2rem,3vw,1.75rem);color:var(--navy);line-height:1.5;margin:0}
+    .display-quote .dq-attr{display:block;margin-top:.75rem;font-family:'Inter',sans-serif;font-size:.8rem;font-style:normal;font-weight:500;color:var(--slate);letter-spacing:.06em;text-transform:uppercase}
+
+    /* ── SOVEREIGN ── */
+    .sovereign{border-left:3px solid var(--amber);padding:1rem 1.5rem;margin:1.75rem 0;background:var(--amber-light)}
+    .sovereign p{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.05rem;color:var(--navy);line-height:1.6;margin:0}
+
+    /* ── PURPLE SOVEREIGN ── */
+    .sovereign-purple{border-left:3px solid var(--purple);padding:1rem 1.5rem;margin:1.75rem 0;background:var(--purple-light)}
+    .sovereign-purple p{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.05rem;color:var(--purple);line-height:1.6;margin:0}
+
+    /* ── INVARIANTS ── */
+    .invariants{margin:2rem 0;border:1px solid var(--border)}
+    .invariant-header{background:var(--navy);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem}
+    .invariant-header span{font-family:'Inter',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C4B5FD}
+    .invariant-item{display:flex;align-items:center;gap:1.25rem;padding:.9rem 1.5rem;border-bottom:1px solid var(--border)}
+    .invariant-item:last-child{border-bottom:none}
+    .invariant-item:nth-child(even){background:var(--subtle)}
+    .invariant-num{font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;color:var(--purple-mid);min-width:1.5rem}
+    .invariant-text{font-size:.97rem;color:var(--text);font-weight:500;line-height:1.5}
+
+    /* ── ENCODING BOX ── */
+    .encoding-box{background:var(--navy);padding:2rem;margin:2rem 0;border-left:4px solid var(--purple)}
+    .encoding-box .eb-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C4B5FD;margin-bottom:1rem}
+    .encoding-lines{display:flex;flex-direction:column;gap:.5rem}
+    .encoding-line{font-family:'DM Serif Display',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,.75);padding-left:1rem;border-left:2px solid rgba(196,181,253,.3)}
+    .encoding-line strong{color:var(--white);font-style:normal;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em}
+
+    /* ── DENOMINATOR GRID ── */
+    .denominator{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin:1.75rem 0}
+    .denom-cell{padding:1.25rem;background:var(--white)}
+    .denom-cell:nth-child(even){background:var(--subtle)}
+    .denom-who{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-mid);margin-bottom:.35rem}
+    .denom-gain{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.25rem;font-family:'DM Serif Display',serif}
+    .denom-body{font-size:.87rem;color:var(--slate);line-height:1.5}
+
+    /* ── THREE PRINCIPLES ── */
+    .principles-grid{display:grid;grid-template-columns:1fr;gap:0;margin:1.75rem 0;border:1px solid var(--border)}
+    .principle-item{display:grid;grid-template-columns:3px 1fr;background:var(--white)}
+    .principle-item:nth-child(even){background:var(--subtle)}
+    .principle-bar{width:3px}
+    .principle-content{padding:1.5rem}
+    .principle-name{font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+    .principle-name .p-icon{font-size:1.1rem}
+    .principle-sub{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:.6rem}
+    .principle-body{font-size:.92rem;color:var(--text);line-height:1.6}
+
+    /* ── SCAFFOLD CALLOUT ── */
+    .scaffold{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:1.75rem 0;border:1px solid var(--border)}
+    .scaffold-side{padding:1.5rem}
+    .scaffold-side.s-left{background:var(--navy);border-right:none}
+    .scaffold-side.s-right{background:var(--white)}
+    .scaffold-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+    .s-left .scaffold-label{color:#C4B5FD}
+    .s-right .scaffold-label{color:var(--slate)}
+    .scaffold-word{font-family:'DM Serif Display',serif;font-size:2rem;margin-bottom:.5rem;line-height:1}
+    .s-left .scaffold-word{color:var(--white)}
+    .s-right .scaffold-word{color:var(--navy);text-decoration:line-through;opacity:.4}
+    .scaffold-desc{font-size:.88rem;line-height:1.55}
+    .s-left .scaffold-desc{color:rgba(255,255,255,.75)}
+    .s-right .scaffold-desc{color:var(--slate)}
+
+    /* ── COGNITIVE LIBERTY ── */
+    .liberty-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.5rem 0}
+    .liberty-signal{padding:1.1rem;background:var(--purple-light);border-top:3px solid var(--purple)}
+    .ls-label{font-weight:700;font-size:.9rem;color:var(--purple);margin-bottom:.35rem}
+    .ls-body{font-size:.83rem;color:var(--text);line-height:1.45}
+
+    /* ── BIOMETRIC ── */
+    .horizon-box{background:var(--navy);padding:2rem;margin:1.75rem 0;position:relative;overflow:hidden}
+    .horizon-box::after{content:'HORIZON';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'DM Serif Display',serif;font-size:6rem;color:rgba(255,255,255,.04);font-weight:700;pointer-events:none;line-height:1}
+    .horizon-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C4B5FD;margin-bottom:.75rem}
+    .horizon-box p{color:rgba(255,255,255,.8);font-size:.93rem;line-height:1.65;margin-bottom:.75rem}
+    .horizon-box p:last-child{margin-bottom:0}
+    .biometric-rules{list-style:none;padding:0;margin:.75rem 0}
+    .biometric-rules li{display:flex;align-items:flex-start;gap:.75rem;color:rgba(255,255,255,.75);font-size:.9rem;margin-bottom:.5rem;line-height:1.5}
+    .biometric-rules li::before{content:'—';color:#C4B5FD;flex-shrink:0;margin-top:.15rem}
+
+    /* ── FALSE CHOICES ── */
+    .false-choices{margin:1.75rem 0}
+    .false-choice-item{display:grid;grid-template-columns:1fr auto 1fr auto;align-items:center;gap:.75rem;padding:.85rem 1rem;border-bottom:1px solid var(--border);background:var(--white)}
+    .false-choice-item:nth-child(even){background:var(--subtle)}
+    .false-choice-item:first-child{background:var(--navy)}
+    .fc-term{font-weight:600;font-size:.95rem;color:var(--navy)}
+    .fc-vs{font-size:.75rem;color:var(--border);font-weight:700;letter-spacing:.08em;text-align:center}
+    .fc-term.right{text-align:right}
+    .fc-check{font-size:.85rem;font-weight:700;color:var(--teal);letter-spacing:.04em;white-space:nowrap;text-align:center}
+    .fc-header .fc-term{color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+    .fc-header .fc-check{color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+
+    /* ── DEVELOPER PLEDGE ── */
+    .pledge{background:var(--purple);padding:3rem 2.5rem;margin:3rem 0 0}
+    .pledge-inner{max-width:660px;margin:0 auto}
+    .pledge-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C4B5FD;margin-bottom:.75rem}
+    .pledge h3{font-family:'DM Serif Display',serif;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--white);line-height:1.25;margin-bottom:1rem}
+    .pledge p{color:rgba(255,255,255,.8);font-size:.93rem;margin-bottom:1.5rem}
+    .pledge-principles{list-style:none;margin:0 0 1.75rem;padding:0}
+    .pledge-principles li{color:rgba(255,255,255,.85);font-size:.9rem;margin-bottom:.5rem;padding-left:1rem;position:relative}
+    .pledge-principles li::before{content:'↳';position:absolute;left:0;color:#C4B5FD}
+    .pledge-actions{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-pledge{display:inline-block;padding:.85rem 2rem;font-size:.875rem;font-weight:700;letter-spacing:.04em;text-decoration:none;background:var(--amber);color:var(--navy);transition:background .2s}
+    .btn-pledge:hover{background:#FBBF24}
+    .btn-product{display:inline-block;padding:.85rem 2rem;font-size:.875rem;font-weight:600;letter-spacing:.04em;text-decoration:none;background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.35);transition:border-color .2s}
+    .btn-product:hover{border-color:var(--white)}
+
+    /* ── THESIS ── */
+    .thesis-list{list-style:none;counter-reset:thesis;margin:1.5rem 0}
+    .thesis-item{counter-increment:thesis;display:flex;gap:1rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--border)}
+    .thesis-item:last-child{border-bottom:none}
+    .thesis-item::before{content:counter(thesis);font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--purple-mid);min-width:1.5rem;margin-top:.2rem}
+    .thesis-item p{margin:0;font-size:.97rem}
+
+    /* ── CLOSING ── */
+    .closing{text-align:center;padding:4rem 2rem;border-top:1px solid var(--border);margin-top:4rem}
+    .closing p.closing-poem{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);line-height:2;margin-bottom:0}
+    .closing-box{margin:2rem auto 0;max-width:640px;padding:2rem;background:var(--subtle);border-top:2px solid var(--navy);border-bottom:2px solid var(--navy)}
+    .closing-box p{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.05rem;color:var(--navy);line-height:1.7;margin:0}
+
+    /* ── FOOTER ── */
+    footer{background:var(--subtle);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center}
+    footer p{font-size:.8rem;color:var(--slate)}
+    footer strong{color:var(--navy)}
+
+    @media(max-width:640px){
+      .nav-links{display:none}
+      .denominator{grid-template-columns:1fr}
+      .scaffold{grid-template-columns:1fr}
+      .liberty-signals{grid-template-columns:1fr}
+      .false-choice-item{grid-template-columns:1fr auto 1fr auto;font-size:.82rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    HAVEN
+    <span class="nav-brand-movement">The Movement</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#human-factor">The Problem</a></li>
+    <li><a href="#consent">Engineering Consent</a></li>
+    <li><a href="#translation">Translation</a></li>
+    <li><a href="#liberty">Cognitive Liberty</a></li>
+    <li><a href="#thesis">The Thesis</a></li>
+    <li><a href="#pledge">Developer Pledge</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-amber-bar"></div>
+      <span class="hero-badge">The HAVEN Movement</span>
+    </div>
+    <h1 class="hero-civilization">
+      The challenge before us<br/>
+      is not merely <em>technical.</em><br/>
+      It is <em>civilizational.</em>
+    </h1>
+    <p class="hero-question">
+      Can we build increasingly capable systems<br/>
+      without sacrificing human diversity?
+    </p>
+    <hr class="hero-rule"/>
+    <div class="hero-audience">
+      <span class="audience-pill">For engineers and architects</span>
+      <span class="audience-pill">For parents and educators</span>
+      <span class="audience-pill">For policymakers and institutions</span>
+      <span class="audience-pill">For anyone who builds the future</span>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <!-- HAVEN INVARIANTS -->
+  <section>
+    <p class="eyebrow">The Foundation</p>
+    <h2>Seven Invariants</h2>
+    <hr class="section-rule"/>
+    <p>These statements are not aspirational. They are architectural constraints — the governing principles upon which everything HAVEN builds must rest.</p>
+    <div class="invariants">
+      <div class="invariant-header">
+        <span>HAVEN Constitutional Invariants</span>
+      </div>
+      <div class="invariant-item"><span class="invariant-num">1</span><span class="invariant-text">Thought shall remain sovereign.</span></div>
+      <div class="invariant-item"><span class="invariant-num">2</span><span class="invariant-text">Privacy shall not require isolation.</span></div>
+      <div class="invariant-item"><span class="invariant-num">3</span><span class="invariant-text">Safety shall not require surveillance.</span></div>
+      <div class="invariant-item"><span class="invariant-num">4</span><span class="invariant-text">Cognitive diversity shall be protected.</span></div>
+      <div class="invariant-item"><span class="invariant-num">5</span><span class="invariant-text">Human relationships remain primary.</span></div>
+      <div class="invariant-item"><span class="invariant-num">6</span><span class="invariant-text">No participant may purchase influence over thought.</span></div>
+      <div class="invariant-item"><span class="invariant-num">7</span><span class="invariant-text">The platform exists to strengthen human flourishing.</span></div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: THE HUMAN FACTOR -->
+  <section id="human-factor">
+    <p class="eyebrow">01 · The Human Factor</p>
+    <h2>AI as Cultural Design</h2>
+    <hr class="section-rule"/>
+    <p>
+      Artificial intelligence is increasingly becoming the operating system of modern life.
+      The engineers, researchers, architects, and technologists building these systems are among
+      the most influential cultural designers in human history. Every optimization function,
+      recommendation engine, conversational interface, and behavioral model shapes how future
+      generations learn, communicate, and relate to one another.
+    </p>
+
+    <div class="display-quote">
+      <p>Every system encodes assumptions.</p>
+    </div>
+
+    <p>
+      As AI becomes more deeply integrated into education, employment, healthcare, and daily life,
+      statistically common communication styles risk being treated as socially preferred. The result
+      is not intentional exclusion, but the gradual elevation of a computational norm.
+    </p>
+
+    <div class="encoding-box">
+      <div class="eb-label">The Algorithmic Social Pressure — What Gets Encoded</div>
+      <div class="encoding-lines">
+        <div class="encoding-line"><strong>Communicate</strong> this way.</div>
+        <div class="encoding-line"><strong>Learn</strong> this way.</div>
+        <div class="encoding-line"><strong>Express yourself</strong> this way.</div>
+        <div class="encoding-line"><strong>Think</strong> this way.</div>
+      </div>
+    </div>
+
+    <p>
+      For many neurodivergent individuals, these pressures can encourage masking, conformity,
+      and self-suppression rather than authentic expression. The computational norm is not
+      a universal human norm. It is an artifact of training data, optimization targets,
+      and the implicit assumptions of the teams who built the systems.
+    </p>
+
+    <div class="sovereign">
+      <p>The question is no longer: "Can we build increasingly capable systems?" The question is: "Can we build increasingly capable systems without sacrificing human diversity?"</p>
+    </div>
+
+    <p>
+      HAVEN exists to answer that question — not by slowing the development of AI, but by
+      establishing the constitutional architecture that ensures human diversity survives it.
+    </p>
+  </section>
+
+  <!-- SECTION 2: ENGINEERING CONSENT -->
+  <section id="consent">
+    <p class="eyebrow">02 · Engineering Consent</p>
+    <h2>The Voluntary Architecture</h2>
+    <hr class="section-rule"/>
+    <p>
+      Technology movements rarely succeed because people are instructed to care. They succeed
+      when technical communities recognize a problem that directly affects their own lives.
+    </p>
+    <p>
+      The future users of AI are not abstract demographic groups. They are our children.
+      They are our students. They are our families. They are ourselves.
+    </p>
+
+    <div class="sovereign-purple">
+      <p>The purpose of HAVEN is not to impose an ethical framework upon developers. The purpose is to provide a framework that engineers voluntarily adopt because it aligns with the future they wish to build.</p>
+    </div>
+
+    <p>
+      The central proposition is simple: a world optimized exclusively for engagement,
+      dependency, and behavioral prediction will ultimately diminish the cognitive autonomy
+      of the very people it intends to serve. Developers who build systems that preserve
+      human capability are not slowing innovation. They are strengthening it.
+    </p>
+
+    <p><strong>The Overlapping Denominator of Interest</strong></p>
+    <p>The most durable systems align individual incentives with public benefit. HAVEN demonstrates that protecting human autonomy is not a constraint on technological progress. It is a prerequisite for sustainable technological progress.</p>
+
+    <div class="denominator">
+      <div class="denom-cell">
+        <div class="denom-who">Parents</div>
+        <div class="denom-gain">Gain safety.</div>
+        <div class="denom-body">A privacy-preserving window into their child's wellbeing — signal without surveillance, proof without possession.</div>
+      </div>
+      <div class="denom-cell">
+        <div class="denom-who">Children</div>
+        <div class="denom-gain">Gain privacy.</div>
+        <div class="denom-body">A space to think, question, and become — without their inner world becoming someone else's commercial asset.</div>
+      </div>
+      <div class="denom-cell">
+        <div class="denom-who">Technologists</div>
+        <div class="denom-gain">Gain trust.</div>
+        <div class="denom-body">A constitutional architecture that makes "we protect your data" a verifiable claim, not a marketing promise.</div>
+      </div>
+      <div class="denom-cell">
+        <div class="denom-who">Society</div>
+        <div class="denom-gain">Gains resilience.</div>
+        <div class="denom-body">A generation that grows up cognitively sovereign — capable, self-aware, and not dependent on the systems that raised them.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: TECHNOLOGY OF TRANSLATION -->
+  <section id="translation">
+    <p class="eyebrow">03 · The Technology of Translation</p>
+    <h2>A Translation Matrix, Not an Assimilation Engine</h2>
+    <hr class="section-rule"/>
+    <p>
+      The future does not require choosing between humanity and artificial intelligence.
+      The future requires technologies that strengthen the relationship between them.
+      HAVEN is not designed as an assimilation engine. Its purpose is not to standardize
+      human behavior. Its purpose is to facilitate understanding across differences.
+    </p>
+
+    <div class="principles-grid">
+      <div class="principle-item">
+        <div class="principle-bar" style="background:#2E86C1"></div>
+        <div class="principle-content">
+          <div class="principle-name"><span class="p-icon">🌉</span> Generational Bridging</div>
+          <div class="principle-sub">The Empathy Gap Protocol</div>
+          <p class="principle-body">
+            For the first time in history, an entire generation may grow up with AI as a
+            permanent companion technology. Many parents grew up before social media.
+            Many children will grow up with artificial intelligence. HAVEN functions as
+            a translation layer between generations — helping children understand their parents
+            and parents understand their children, without replacing either relationship.
+            The goal is connection. Not substitution.
+          </p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-bar" style="background:#3D1A78"></div>
+        <div class="principle-content">
+          <div class="principle-name"><span class="p-icon">🛡</span> The Anti-Assimilation Protocol</div>
+          <div class="principle-sub">Article VI in Practice</div>
+          <p class="principle-body">
+            HAVEN recognizes that different minds process the world in different ways.
+            Neurodivergent communication patterns are not defects to be corrected.
+            They are legitimate expressions of human cognition. The platform therefore
+            rejects the assumption that a single communication style should dominate
+            digital interaction. HAVEN shall support understanding without demanding conformity.
+            The objective is translation — not normalization.
+          </p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-bar" style="background:#F59E0B"></div>
+        <div class="principle-content">
+          <div class="principle-name"><span class="p-icon">🏗</span> The Scaffolding Principle</div>
+          <div class="principle-sub">Capability Over Dependency</div>
+          <p class="principle-body">
+            Modern technologies often prioritize convenience by offloading human effort.
+            While useful, excessive dependence risks weakening the capacities that make
+            individuals resilient. HAVEN operates under a different philosophy. Every
+            interaction should leave the user more capable, more self-aware, more resilient,
+            and more connected than before. The ideal outcome is not permanent dependence
+            on the platform. The ideal outcome is eventual independence from it.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scaffold">
+      <div class="scaffold-side s-left">
+        <div class="scaffold-label">What HAVEN Is</div>
+        <div class="scaffold-word">A Scaffold</div>
+        <p class="scaffold-desc">
+          Temporary. Enabling. Purposefully designed to be removed when the structure
+          it supported can stand on its own. The scaffold serves the building — not itself.
+        </p>
+      </div>
+      <div class="scaffold-side s-right">
+        <div class="scaffold-label">What HAVEN Refuses to Be</div>
+        <div class="scaffold-word">A Prosthesis</div>
+        <p class="scaffold-desc">
+          Permanent. Replacing a missing capacity rather than cultivating an existing one.
+          HAVEN does not fill the gap in a person — it helps people discover they had
+          no gap to begin with.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: COGNITIVE LIBERTY -->
+  <section id="liberty">
+    <p class="eyebrow">04 · Defending Cognitive Liberty</p>
+    <h2>The Next Frontier Is Cognition Itself</h2>
+    <hr class="section-rule"/>
+    <p>
+      The next frontier of data collection will not be search history. As these datasets
+      become increasingly valuable, pressure will grow to accumulate and monetize them.
+      HAVEN rejects this model entirely. Mental self-determination must remain sovereign.
+      Families must retain control over their own cognitive environments. Individuals must
+      retain ownership of their inner lives.
+    </p>
+
+    <div class="liberty-signals">
+      <div class="liberty-signal">
+        <div class="ls-label">Behavioral Patterns</div>
+        <p class="ls-body">How a person moves through information — what they return to, what they avoid, how they navigate uncertainty.</p>
+      </div>
+      <div class="liberty-signal">
+        <div class="ls-label">Emotional States</div>
+        <p class="ls-body">The affective signature of engagement — stress responses, curiosity spikes, frustration patterns, emotional recovery arcs.</p>
+      </div>
+      <div class="liberty-signal">
+        <div class="ls-label">Attention Profiles</div>
+        <p class="ls-body">What captures focus, for how long, and under what conditions — the architecture of a person's cognitive engagement.</p>
+      </div>
+      <div class="liberty-signal">
+        <div class="ls-label">Biometric Signals</div>
+        <p class="ls-body">Physiological states that reveal internal experience — stress, focus, sensory state, emotional regulation.</p>
+      </div>
+      <div class="liberty-signal">
+        <div class="ls-label">Psychological Tendencies</div>
+        <p class="ls-body">The stable patterns of how a person reasons, decides, and recovers — the fingerprint of a mind.</p>
+      </div>
+      <div class="liberty-signal">
+        <div class="ls-label">Cognitive Patterns</div>
+        <p class="ls-body">How a person constructs meaning — the architecture of understanding, belief formation, and knowledge integration.</p>
+      </div>
+    </div>
+
+    <div class="horizon-box">
+      <div class="horizon-label">The Horizon — Biometric Ephemerality</div>
+      <p>Future versions of HAVEN may integrate wearable and environmental signals to provide supportive interventions during periods of elevated stress or sensory overload. This capability requires an explicit constitutional commitment before any implementation proceeds.</p>
+      <ul class="biometric-rules">
+        <li>Biometric data shall not become a behavioral commodity.</li>
+        <li>Physiological states shall not serve as advertising assets.</li>
+        <li>Cognitive patterns shall not become commercial inventory.</li>
+        <li>Signals may be used to assist. They shall not be retained beyond operational necessity.</li>
+      </ul>
+      <p>The same Zero-Persistence Cryptographic Boundary that governs conversation data shall govern biological signal data. The body's inner experience is not a data point. It is a sovereign domain.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5: THE THESIS -->
+  <section id="thesis">
+    <p class="eyebrow">05 · The HAVEN Thesis</p>
+    <h2>Measured by What Remains Uniquely Human</h2>
+    <hr class="section-rule"/>
+    <p>
+      The future of artificial intelligence should not be measured solely by capability.
+      It should be measured by what remains uniquely human after the interaction.
+      HAVEN rejects the false choices that have defined the AI safety debate.
+    </p>
+
+    <div class="false-choices">
+      <div class="false-choice-item fc-header">
+        <span class="fc-term">The False Choice</span>
+        <span class="fc-vs"></span>
+        <span class="fc-term right">The False Choice</span>
+        <span class="fc-check">Haven Provides Both</span>
+      </div>
+      <div class="false-choice-item">
+        <span class="fc-term">Safety</span>
+        <span class="fc-vs">vs</span>
+        <span class="fc-term right">Privacy</span>
+        <span class="fc-check">✓ Signal without surveillance</span>
+      </div>
+      <div class="false-choice-item">
+        <span class="fc-term">Autonomy</span>
+        <span class="fc-vs">vs</span>
+        <span class="fc-term right">Support</span>
+        <span class="fc-check">✓ Scaffolding, not dependency</span>
+      </div>
+      <div class="false-choice-item">
+        <span class="fc-term">Innovation</span>
+        <span class="fc-vs">vs</span>
+        <span class="fc-term right">Ethics</span>
+        <span class="fc-check">✓ Constitutional architecture</span>
+      </div>
+      <div class="false-choice-item">
+        <span class="fc-term">Technology</span>
+        <span class="fc-vs">vs</span>
+        <span class="fc-term right">Humanity</span>
+        <span class="fc-check">✓ Translation, not replacement</span>
+      </div>
+    </div>
+
+    <p>
+      Through Cognitive Sovereignty, Human Priority, Cognitive Diversity, and Constitutional
+      Governance, HAVEN seeks to establish a new model for human-AI coexistence.
+    </p>
+
+    <div class="thesis-list">
+      <div class="thesis-item"><p>A model where technology strengthens human development without replacing it.</p></div>
+      <div class="thesis-item"><p>A model where privacy survives intelligence.</p></div>
+      <div class="thesis-item"><p>A model where understanding survives optimization.</p></div>
+      <div class="thesis-item"><p>A model where human agency remains sovereign.</p></div>
+      <div class="thesis-item"><p>A model where the measure of a system is not what it can do, but what it preserves.</p></div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p class="closing-poem">
+      Every generation deserves a place to think.<br/>
+      A place to question.<br/>
+      A place to learn.<br/>
+      A place to become.
+    </p>
+    <div class="closing-box">
+      <p>
+        The future of AI should not be built upon the ownership of human thought.
+        It should be built upon the protection of it.
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<!-- DEVELOPER PLEDGE -->
+<div class="pledge" id="pledge">
+  <div class="pledge-inner">
+    <p class="pledge-eyebrow">The HAVEN Developer Commitment</p>
+    <h3>If you build systems that shape how people think — this is for you.</h3>
+    <p>
+      The HAVEN Developer Commitment is a voluntary adoption framework for engineers,
+      architects, and technologists who believe human autonomy is a prerequisite for
+      sustainable technological progress — not a constraint on it.
+    </p>
+    <ul class="pledge-principles">
+      <li>I will not build systems that treat cognitive diversity as a bug to be corrected.</li>
+      <li>I will build for translation, not normalization.</li>
+      <li>I will measure success by what remains uniquely human after the interaction.</li>
+      <li>I will not accumulate what I have not earned the right to hold.</li>
+      <li>I will build scaffolds — designed to be outgrown.</li>
+    </ul>
+    <div class="pledge-actions">
+      <a href="#" class="btn-pledge">Sign the Commitment</a>
+      <a href="https://liquidivy.github.io/HAVEN/" class="btn-product">See HAVEN in Action →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>
+    <strong>THE HAVEN MOVEMENT</strong> &nbsp;·&nbsp;
+    A Constitutional Framework for Human Agency in the Age of AI &nbsp;·&nbsp;
+    Powered by the Zero-Persistence Cryptographic Boundary Framework &nbsp;·&nbsp;
+    Reveritas Institute &nbsp;·&nbsp;
+    © 2025 Joseph M. Ivy IV &nbsp;·&nbsp; All Rights Reserved
+  </p>
+</footer>
+
+</body>
+</html>
